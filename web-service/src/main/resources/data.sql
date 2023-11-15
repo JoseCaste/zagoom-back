@@ -1,0 +1,1 @@
+insert into employees (id_employee, lastname, creation_date) values(100, 'José', now());
