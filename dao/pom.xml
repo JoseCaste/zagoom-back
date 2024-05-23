@@ -3,14 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.core</groupId>
-        <artifactId>Spring-Module-Arch4</artifactId>
+        <artifactId>zagoom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>dao</artifactId>
+    <artifactId>dao-name</artifactId>
     <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
 
-    <name>dao</name>
+    <name>dao-name</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,10 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.2.220</version>
-            <scope>runtime</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
 
         <dependency>

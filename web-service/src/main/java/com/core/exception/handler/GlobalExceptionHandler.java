@@ -1,5 +1,7 @@
 package com.core.exception.handler;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -30,5 +32,14 @@ public class GlobalExceptionHandler {
         });
 
         return listError;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> exception(Exception exception){
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("message", exception.getMessage());
+        responseBody.put("date", LocalDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 }

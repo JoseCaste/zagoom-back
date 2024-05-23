@@ -12,29 +12,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "usuario")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_employee")
-    private Long idEmployee;
+    @Column(name = "idUser")
+    private Long idUser;
 
-    private String lastname;
+    private String nombre;
 
-    @Column(name = "creation_date")
-    private Date creationDate;
+    @Column(name = "correo")
+    private String correo;
 
-    @Column(name = "timestamp")
-    @CreationTimestamp
-    private Timestamp timestamp;
+    @Column(name = "password")
+    private String password;
 }
