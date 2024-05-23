@@ -1,0 +1,5 @@
+[build]
+command = "mvn clean install"
+
+[start]
+command = "java -jar web-service/target/web-services.jar"
