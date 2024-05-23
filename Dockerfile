@@ -7,5 +7,6 @@ WORKDIR /app
 #COPY web-service/target/*.jar web-services.jar
 COPY dao/target/dao.jar dao.jar
 COPY web-service/target/web-services.jar web-services.jar
+COPY web-service/target/web-services.jar app.jar
 # Command to run the jar file
-ENTRYPOINT ["java", "-jar", "web-services/web-services.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
