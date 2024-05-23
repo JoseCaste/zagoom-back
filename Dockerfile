@@ -1,8 +1,9 @@
-# Use a base image with Java runtime
-FROM openjdk:17-jdk-alpine
+# Usa una imagen base con Maven
+FROM maven:latest
 
-# Set the working directory
+# Establece el directorio de trabajo
 WORKDIR /app
+
 # Copia el archivo pom.xml al directorio de trabajo
 COPY pom.xml .
 
@@ -12,11 +13,12 @@ COPY . .
 # Ejecuta el comando 'mvn clean install'
 RUN mvn clean install -DskipTests
 
-# Copy the build artifact from the target directory to the container
+# Copia los artefactos generados a ubicaciones específicas
 COPY dao/target/dao.jar dao.jar
 COPY web-service/target/web-services.jar web-services.jar
 COPY web-service/target/web-services.jar app.jar
 
+
 # Command to run the jar file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
 
