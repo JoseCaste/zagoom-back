@@ -21,12 +21,12 @@ public class EmployeeController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/get")
+    @GetMapping("/test-api")
     public ResponseEntity<?> get() throws Exception {
         return ResponseEntity.ok().body("HI WORLD!!");
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<?> doLogin(@RequestBody LoginDTO loginDTO) throws Exception {
         return ResponseEntity.ok().body(usuarioService.doLogin(loginDTO));
     }
