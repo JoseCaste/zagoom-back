@@ -21,7 +21,7 @@ public class EmployeeController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/")
+    @GetMapping("/get")
     public ResponseEntity<?> get() throws Exception {
         return ResponseEntity.ok().body("HI WORLD!!");
     }
