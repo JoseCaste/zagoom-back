@@ -1,24 +1,30 @@
-# Usa una imagen base con Maven
-FROM maven:latest
+# Usa una imagen base con JDK y Maven
+FROM maven:3.8.5-openjdk-8 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo pom.xml al directorio de trabajo
-COPY pom.xml .
+# Copia el archivo pom.xml y los archivos de configuración de Maven
+COPY pom.xml /app/
+COPY dao/pom.xml /app/dao/
+COPY web-services/pom.xml /app/web-services/
 
-# Copia todo el código fuente al directorio de trabajo
-COPY . .
+# Copia el código fuente de los módulos
+COPY dao /app/dao/
+COPY web-services /app/web-services/
 
-# Ejecuta el comando 'mvn clean install'
-RUN mvn clean install -DskipTests
+# Ejecuta mvn clean install para compilar los módulos y generar los artefactos
+RUN mvn clean install
+CMD ["ls -lah"]
+# Segunda etapa: imagen de ejecución
+FROM openjdk:8-jre
 
-# Copia los artefactos generados a ubicaciones específicas
-COPY dao/target/dao.jar dao.jar
-COPY web-service/target/web-services.jar web-services.jar
-COPY web-service/target/web-services.jar app.jar
+# Establece el directorio de trabajo
+WORKDIR /app
 
+# Copia los archivos JAR desde la etapa de construcción
+COPY --from=build /app/dao/target/dao.jar /app/dao.jar
+COPY --from=build /app/web-services/target/web-services.jar /app/web-services.jar
 
-# Command to run the jar file
-CMD ["java", "-jar", "app.jar"]
-
+# Define el comando para ejecutar tu aplicación
+CMD ["java", "-jar", "/app/web-services.jar"]
