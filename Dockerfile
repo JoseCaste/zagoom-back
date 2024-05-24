@@ -24,7 +24,7 @@ WORKDIR /app
 
 # Copia los archivos JAR desde la etapa de construcción
 COPY --from=build /app/dao/target/dao.jar /app/dao.jar
-COPY --from=build /app/web-service/target/web-services.jar /app/web-service.jar
+COPY --from=build /app/web-service/target/web-service.jar /app/web-service.jar
 
 # Define el comando para ejecutar tu aplicación
 CMD ["java", "-jar", "/app/web-service.jar"]
