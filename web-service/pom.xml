@@ -36,7 +36,7 @@
     </dependencies>
 
     <build>
-        <finalName>web-services</finalName>
+        <finalName>web-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

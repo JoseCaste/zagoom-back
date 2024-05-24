@@ -7,11 +7,11 @@ WORKDIR /app
 # Copia el archivo pom.xml y los archivos de configuración de Maven
 COPY pom.xml /app/
 COPY dao/pom.xml /app/dao/
-COPY web-services/pom.xml /app/web-services/
+COPY web-service/pom.xml /app/web-service/
 
 # Copia el código fuente de los módulos
 COPY dao /app/dao/
-COPY web-services /app/web-services/
+COPY web-service /app/web-service/
 
 # Ejecuta mvn clean install para compilar los módulos y generar los artefactos
 RUN mvn clean install
