@@ -1,5 +1,5 @@
 # Usa una imagen base con JDK y Maven
-FROM maven:3.8.5-openjdk-8 AS build
+FROM maven:3.8.5-openjdk-17 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY web-service /app/web-service/
 RUN mvn clean install
 CMD ["ls -lah"]
 # Segunda etapa: imagen de ejecución
-FROM openjdk:8-jre
+FROM openjdk:17
 
 # Establece el directorio de trabajo
 WORKDIR /app
