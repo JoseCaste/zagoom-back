@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/login")
-public class EmployeeController {
+public class RestController {
 
     @Autowired
     private UsuarioService usuarioService;
@@ -29,11 +28,5 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<?> doLogin(@RequestBody LoginDTO loginDTO) throws Exception {
         return ResponseEntity.ok().body(usuarioService.doLogin(loginDTO));
-    }
-
-    @PostMapping("/new-employee")
-    public ResponseEntity<?> saveNewEmployee(@RequestBody @Valid EmployeeDTO employeeDTO){
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.saveEmployee(employeeDTO));
     }
 }
