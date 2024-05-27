@@ -28,6 +28,10 @@ public class Usuario {
     private Long idUser;
 
     private String nombre;
+    @Column(name = "apellido_paterno")
+    private String apellidoPaterno;
+    @Column(name = "apellido_materno")
+    private String apellidoMaterno;
 
     @Column(name = "correo")
     private String correo;

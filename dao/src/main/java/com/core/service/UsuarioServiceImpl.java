@@ -36,7 +36,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario saveUser(UserDTO userDTO) {
         Usuario usuario = Usuario.builder()
                 .correo(userDTO.getCorreo())
-                .nombre("")
+                .nombre(userDTO.getNombre())
+                .apellidoPaterno(userDTO.getApellidoPaterno())
+                .apellidoMaterno(userDTO.getApellidoMaterno())
                 .password(userDTO.getPassword())
                 .build();
         this.usuarioRepository.save(usuario);
