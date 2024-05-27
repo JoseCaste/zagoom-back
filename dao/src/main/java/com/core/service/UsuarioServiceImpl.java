@@ -39,6 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .nombre(userDTO.getNombre())
                 .apellidoPaterno(userDTO.getApellidoPaterno())
                 .apellidoMaterno(userDTO.getApellidoMaterno())
+                .telefono(userDTO.getTelefono())
                 .password(userDTO.getPassword())
                 .build();
         this.usuarioRepository.save(usuario);

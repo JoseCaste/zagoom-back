@@ -38,4 +38,7 @@ public class Usuario {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "telefono")
+    private String telefono;
 }
