@@ -21,7 +21,7 @@ public class UserController {
         this.usuarioSerice = usuarioService;
     }
     @PostMapping
-    public ResponseEntity<Usuario> saveUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<Usuario> saveUser(@RequestBody UserDTO userDTO) throws Exception {
         return ResponseEntity.ok(this.usuarioSerice.saveUser(userDTO));
     }
 }

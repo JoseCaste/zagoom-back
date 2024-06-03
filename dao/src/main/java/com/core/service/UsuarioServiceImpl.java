@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -28,12 +29,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario doLogin(LoginDTO loginDTO) throws Exception {
-        Usuario usuario = this.usuarioRepository.findByCorreoAndPassword(loginDTO.getCorreo(), loginDTO.getPassword()).orElseThrow(()-> new Exception("No se ha identificado un registro"));
+        Usuario usuario = this.usuarioRepository.findByCorreoAndPassword(loginDTO.getCorreo(), loginDTO.getPassword()).orElseThrow(()-> new Exception("Credenciales no identificadas"));
         return usuario;
     }
 
     @Override
-    public Usuario saveUser(UserDTO userDTO) {
+    public Usuario saveUser(UserDTO userDTO) throws Exception {
+        List<Usuario> byCorreoList = this.usuarioRepository.findByCorreoList(userDTO.getCorreo());
+
+        if(!byCorreoList.isEmpty()) {
+            throw new Exception("El correo ya ha sido registrado");
+        }
+
         Usuario usuario = Usuario.builder()
                 .correo(userDTO.getCorreo())
                 .nombre(userDTO.getNombre())

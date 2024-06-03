@@ -1,4 +1,4 @@
-package com.dao;
+package com.core;
 
 /**
  * Unit test for simple App.

@@ -14,5 +14,5 @@ public interface UsuarioService {
 
     Usuario doLogin(LoginDTO loginDTO) throws Exception;
 
-    Usuario saveUser(UserDTO userDTO);
+    Usuario saveUser(UserDTO userDTO) throws Exception;
 }
