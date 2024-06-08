@@ -3,11 +3,8 @@ package com.core.dto;
 import lombok.Data;
 
 @Data
-public class TemporalCarInspection {
+public class CarInspectionDTO {
 
     private Long idUsuario;
-    private String carModel;
-    private String anio;
-    private String color;
-    private String noMotor;
+    private String claveElemento;
 }

@@ -4,8 +4,6 @@ import com.core.entity.CarModelEntity;
 import com.core.repository.CarModelRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CarModelServiceImpl implements CarModelService{
     private CarModelRepository carModelRepository;

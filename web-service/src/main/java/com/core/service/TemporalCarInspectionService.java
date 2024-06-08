@@ -4,9 +4,6 @@ import com.core.entity.CarModelEntity;
 
 import java.util.List;
 
-public interface CarBrandService {
+public interface TemporalCarInspectionService{
 
-    Object getAllCars();
-
-    List<CarModelEntity> getBrandsByCar(String brandName);
 }

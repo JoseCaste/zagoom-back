@@ -1,34 +1,24 @@
 package com.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "car_brand")
+@Table(name = "elemento_auto")
 @Data
-public class CarBrandEntity {
+public class ElementoAutoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_brand_id")
-    private Long carBrandId;
+    @Column(name = "id_elemento")
+    private Long idElemento;
 
-    @Column(name = "brand_name")
-    private String brandName;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "carBrand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<CarModelEntity> carModels;
+    @Column(name = "elemento")
+    private String elemento;
 }

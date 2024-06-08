@@ -9,7 +9,10 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 @Component
 public class S3Util {
@@ -23,13 +26,15 @@ public class S3Util {
         s3Client = s3Client_;
     }
 
-    public static void uploadFile(String bucketName, String key, String filePath, MultipartFile multipartFile) {
+    public static void uploadFile(String bucketName, String key, MultipartFile multipartFile) throws IOException {
+        File file = File.createTempFile(Objects.requireNonNull(multipartFile.getOriginalFilename()), multipartFile.getContentType());
+
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
                 .build();
 
-        s3Client.putObject(putObjectRequest, Paths.get(filePath));
+        s3Client.putObject(putObjectRequest, Paths.get(file.getPath()));
     }
 
     public static void downloadFile(String bucketName, String key, String downloadFilePath) {
