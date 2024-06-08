@@ -89,9 +89,75 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             try {
                 Properties properties = new Properties();
-                Resource resource = resourceLoader.getResource("classpath:" + "recovery-password-token.html");
-                Path path = resource.getFile().toPath();
-                String fileContent = new String(Files.readAllBytes(path));
+                String fileContent = "<!DOCTYPE html>\n" +
+                        "<html lang=\"es\">\n" +
+                        "<head>\n" +
+                        "    <meta charset=\"UTF-8\">\n" +
+                        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "    <title>Email Template</title>\n" +
+                        "    <style>\n" +
+                        "        body {\n" +
+                        "            font-family: Arial, sans-serif;\n" +
+                        "            background-color: #fce4ec;\n" +
+                        "            color: #333;\n" +
+                        "            margin: 0;\n" +
+                        "            padding: 0;\n" +
+                        "        }\n" +
+                        "        .email-container {\n" +
+                        "            max-width: 600px;\n" +
+                        "            margin: 0 auto;\n" +
+                        "            background-color: #ffffff;\n" +
+                        "            border-radius: 10px;\n" +
+                        "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n" +
+                        "            overflow: hidden;\n" +
+                        "        }\n" +
+                        "        .email-header {\n" +
+                        "            background-color: #f8bbd0;\n" +
+                        "            color: #ffffff;\n" +
+                        "            padding: 20px;\n" +
+                        "            text-align: center;\n" +
+                        "        }\n" +
+                        "        .email-body {\n" +
+                        "            padding: 20px;\n" +
+                        "            color: #333333;\n" +
+                        "        }\n" +
+                        "        .email-footer {\n" +
+                        "            background-color: #f8bbd0;\n" +
+                        "            color: #ffffff;\n" +
+                        "            padding: 10px;\n" +
+                        "            text-align: center;\n" +
+                        "        }\n" +
+                        "        .token {\n" +
+                        "            background-color: #fce4ec;\n" +
+                        "            color: #d81b60;\n" +
+                        "            padding: 10px;\n" +
+                        "            border-radius: 5px;\n" +
+                        "            display: inline-block;\n" +
+                        "            margin: 10px 0;\n" +
+                        "            font-size: 18px;\n" +
+                        "            font-weight: bold;\n" +
+                        "        }\n" +
+                        "        .message {\n" +
+                        "            font-size: 16px;\n" +
+                        "        }\n" +
+                        "    </style>\n" +
+                        "</head>\n" +
+                        "<body>\n" +
+                        "<div class=\"email-container\">\n" +
+                        "    <div class=\"email-header\">\n" +
+                        "        <h1>¡Hola, {{emailId}}!</h1>s\n" +
+                        "    </div>\n" +
+                        "    <div class=\"email-body\">\n" +
+                        "        <p class=\"message\">Esperamos que estés teniendo un día maravilloso. Para continuar con el proceso, por favor utiliza el siguiente token de seguridad:</p>\n" +
+                        "        <div class=\"token\">{{token}}</div>\n" +
+                        "        <p class=\"message\">Si tienes alguna pregunta, no dudes en contactarnos. ¡Que tengas un excelente día!</p>\n" +
+                        "    </div>\n" +
+                        "    <div class=\"email-footer\">\n" +
+                        "        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>\n" +
+                        "    </div>\n" +
+                        "</div>\n" +
+                        "</body>\n" +
+                        "</html>";
 
                 properties.put("mail.smtp.host", "smtp.office365.com");
                 properties.put("mail.smtp.port", "587");
