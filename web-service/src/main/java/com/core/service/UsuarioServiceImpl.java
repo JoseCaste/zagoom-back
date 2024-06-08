@@ -103,7 +103,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 Session session = Session.getInstance(properties, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
+                        return new PasswordAuthentication("jotaguzman08@gmail.com", "Fifajuan0208.");
                     }
                 });
 
