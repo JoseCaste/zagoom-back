@@ -145,7 +145,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                         "<body>\n" +
                         "<div class=\"email-container\">\n" +
                         "    <div class=\"email-header\">\n" +
-                        "        <h1>¡Hola, {{emailId}}!</h1>s\n" +
+                        "        <h1>¡Hola, {{emailId}}!</h1>\n" +
                         "    </div>\n" +
                         "    <div class=\"email-body\">\n" +
                         "        <p class=\"message\">Esperamos que estés teniendo un día maravilloso. Para continuar con el proceso, por favor utiliza el siguiente token de seguridad:</p>\n" +
