@@ -173,7 +173,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
                 Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(username));
+                message.setFrom(new InternetAddress("jotaguzman08@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recoveryPasswordDTO.getCorreo()));
                 message.setSubject("Token de seguridad | Reestrablecer contraseña");
                 int recoveryToken = generateRandomToken();
