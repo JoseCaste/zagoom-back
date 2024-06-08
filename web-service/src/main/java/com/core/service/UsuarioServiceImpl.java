@@ -43,9 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     protected EmailRecoveryTokenRepository emailRecoveryTokenRepository;
     @Autowired
     protected ResourceLoader resourceLoader;
-    @Value("${emailIdFrom}")
     private String username;
-    @Value("${password}")
     private String password;
     Random random = new Random();
 
