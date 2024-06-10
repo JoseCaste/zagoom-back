@@ -32,7 +32,7 @@ public class InspeccionVehicularController {
         return ResponseEntity.ok(this.carRegistryService.saveCarRegistry(carRegistryDTO));
     }
 
-    @PostMapping(value = "/guarda-inpeccion", consumes = {"multipart/form-data" })
+    @PostMapping(value = "/guarda-inspeccion", consumes = {"multipart/form-data" })
     public ResponseEntity<?> saveInspection(@RequestParam @Valid Long idUsuario, @RequestParam @Valid String claveElemento, @RequestParam @RequestPart @Valid MultipartFile elementInspectionFile) throws Exception {
         CarInspectionDTO carInspectionDTO = CarInspectionDTO.builder()
                 .idUsuario(idUsuario)
