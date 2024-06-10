@@ -1,5 +1,6 @@
 package com.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -25,4 +26,10 @@ public class TemporalCarInpectionEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_registry_fk")
     private CarRegistryEntity carRegistry;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "elemento_auto_fk")
+    @JsonIgnore
+    private ElementoAutoEntity elementoAuto;
+    @Column(name = "bucket_uri")
+    private String bucketUri;
 }
