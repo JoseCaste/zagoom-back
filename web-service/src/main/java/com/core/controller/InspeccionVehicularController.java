@@ -42,7 +42,7 @@ public class InspeccionVehicularController {
     }
 
     @PostMapping(value = "/consulta-registro-vehicular")
-    public ResponseEntity<?> finalizeInspection(@RequestParam("idUsuario") @Valid Long idUsuario, @RequestParam(value = "last", defaultValue = "false") boolean lastMovement) {
+    public ResponseEntity<?> getCarRegistry(@RequestParam("idUsuario") @Valid Long idUsuario, @RequestParam(value = "last", defaultValue = "false") boolean lastMovement) {
         return ResponseEntity.ok(this.carRegistryService.finalizeInspectionCar(idUsuario, lastMovement));
     }
 }
