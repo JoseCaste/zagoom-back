@@ -43,7 +43,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     protected EmailRecoveryTokenRepository emailRecoveryTokenRepository;
     @Autowired
     protected ResourceLoader resourceLoader;
+    @Value("${emailIdFrom}")
     private String username;
+    @Value("${password}")
     private String password;
     Random random = new Random();
 
@@ -88,7 +90,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
             try {
-                Properties properties = new Properties();
                 String fileContent = "<!DOCTYPE html>\n" +
                         "<html lang=\"es\">\n" +
                         "<head>\n" +
@@ -159,6 +160,8 @@ public class UsuarioServiceImpl implements UsuarioService {
                         "</body>\n" +
                         "</html>";
 
+                Properties properties = new Properties();
+
                 properties.put("mail.smtp.host", "smtp.office365.com");
                 properties.put("mail.smtp.port", "587");
                 properties.put("mail.smtp.auth", "true");
@@ -167,13 +170,13 @@ public class UsuarioServiceImpl implements UsuarioService {
                 Session session = Session.getInstance(properties, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("jotaguzman08@gmail.com", "Fifajuan0208.");
+                        return new PasswordAuthentication(username, password);
                     }
                 });
 
 
                 Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress("jotaguzman08@gmail.com"));
+                message.setFrom(new InternetAddress(username));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recoveryPasswordDTO.getCorreo()));
                 message.setSubject("Token de seguridad | Reestrablecer contraseña");
                 int recoveryToken = generateRandomToken();
