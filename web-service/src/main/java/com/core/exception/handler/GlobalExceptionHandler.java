@@ -40,6 +40,8 @@ public class GlobalExceptionHandler {
         responseBody.put("message", exception.getMessage());
         responseBody.put("date", LocalDateTime.now());
 
+        exception.printStackTrace();
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 }

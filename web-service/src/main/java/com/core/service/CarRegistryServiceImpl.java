@@ -63,15 +63,15 @@ public class CarRegistryServiceImpl implements CarRegistryService{
         TemporalCarInpectionEntity temporalCarInpectionEntityAux;
         ElementoAutoEntity elementoAuto = this.elementoAutoRepository.findByElemento(carInspectionDTO.getClaveElemento()).orElseThrow(()-> new RuntimeException("No se ha encontrado el elemento del coche especificado"));
 
-        temporalCarInpectionEntity = this.temporalCarInspectionRepository.findByCarRegistry(carRegistry);
+        List<TemporalCarInpectionEntity> byCarRegistry = this.temporalCarInspectionRepository.findByCarRegistry(carRegistry);
 
-        if(temporalCarInpectionEntity.isPresent()) {
-            temporalCarInpectionEntityAux = temporalCarInpectionEntity.get();
+        for (TemporalCarInpectionEntity itemTemp: byCarRegistry) {
 
-            if(temporalCarInpectionEntityAux.getElementoAuto().getElemento().equals(elementoAuto.getElemento())) {
-                throw new Exception("El registro de coche ya tiene inspeccionado el elemento");
-            }
+                if(itemTemp.getElementoAuto().getElemento().equals(elementoAuto.getElemento())) {
+                    throw new Exception(String.format("El registro de coche ya tiene inspeccionado el elemento \"%s\"", itemTemp.getElementoAuto().getElemento()));
+                }
         }
+
 
         temporalCarInpectionEntityAux = new TemporalCarInpectionEntity();
         S3Util.uploadFile("zagoom","inspeccion/"+elementInspectionFile.getOriginalFilename() ,elementInspectionFile);
